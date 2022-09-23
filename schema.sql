@@ -1,6 +1,6 @@
 create table users (
     id serial primary key,
-    name text,
+    username text,
     password text,
     role text
 );
