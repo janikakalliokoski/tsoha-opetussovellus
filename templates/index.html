@@ -1,12 +1,14 @@
+{% block content %}
+
+<h1>Tämä on etusivu</h1>
+
 {% if session.username %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<p>Olet kirjautunut käyttäjänimellä {{ session.username }}</p>
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
-<form action="/login" method="POST">
-<p>Tunnus:<br>
-<input type="text" name="username"></p>
-<p>Salasana:<br>
-<input type="password" name="password"></p>
-<input type="submit" value="Kirjaudu">
-</form>
+<p>Et ole kirjautunut sisään.</p>
+<a href="/login">Kirjaudu sisään</a>
+<a href="/signup">Luo käyttäjä</a>
 {% endif %}
+
+{% endblock %}

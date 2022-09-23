@@ -1,0 +1,17 @@
+{% block content %}
+
+<h2>Luo käyttäjä</h2>
+<form action="/signup" method="POST">
+<p>Käyttäjänimi:
+<input type="text" name="username"></p>
+<p>Salasana:
+<input type="password" name="password"></p>
+<p>Valitse rooli:
+<input type="radio" name="role" value="1"> Opiskelija
+<input type="radio" name="role" value="2"> Opettaja
+</p>
+<input type="submit" value="Luo käyttäjä">
+</form>
+<a href="/">Palaa takaisin</a>
+
+{% endblock %}
