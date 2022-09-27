@@ -2,6 +2,12 @@
 
 <h1>Tämä on etusivu</h1>
 
+<p>
+{% if message %}
+{{message}}
+{% endif %}
+</p>
+
 {% if session.username %}
 <p>Olet kirjautunut käyttäjänimellä {{ session.username }}</p>
 <a href="/logout">Kirjaudu ulos</a>

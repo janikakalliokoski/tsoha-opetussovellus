@@ -13,10 +13,22 @@ def signup():
 
     if request.method == "POST":
         username = request.form["username"]
-        password = request.form["password"]
+        if len(username) < 1 or len(username) > 20:
+            return render_template("error.html", message="Käyttäjänimen on oltava 1-20 merkkiä")
+
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+        if password1 != password2:
+            return render_template("error.html", message="Salasanat eivät täsmää")
+        if len(password1) < 8 or len(password1) > 20:
+            return render_template("/error.html", message="Salasanan on oltava 8-20 merkkiä")
+
         role = request.form["role"]
-        users.signup(username, password, role)
-        return redirect("/")
+
+        if users.signup(username, password1, role):
+            return render_template("index.html", message=f"Käyttäjä {username} luotu onnistuneesti!")
+        else:
+            return render_template("error.html", message="Käyttäjän luonti ei onnistunut, kokeile toista käyttäjänimeä")
 
 @app.route("/login",methods=["get", "post"])
 def login():
