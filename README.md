@@ -20,3 +20,4 @@ Testaa sovellusta [Herokussa](https://tsoha-janikan-opetussovellus.herokuapp.com
 - *Opettajan näkemä tilasto*
 - *Materiaaleille tietokantataulu ja linkki materiaaliin kurssisivulla*
 - *Kurssien poistaminen*
+- *Lisää csrf-tokenit*
