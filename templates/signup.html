@@ -1,22 +1,31 @@
+{% extends "layout.html" %}
 {% block content %}
 
-<h2>Luo käyttäjä</h2>
-<form action="/signup" method="POST">
-<p>Käyttäjänimi:
-<br>
-<input type="text" name="username" minlength="1" maxlength="20"></p>
-<p>Salasana:
-<br>
-<input type="password" name="password1" minlength="1" maxlength="20"></p>
-<p>Kirjoita salasana uudestaan:
-<br>
-<input type="password" name="password2" minlength="1" maxlength="20"></p>
-<p>Valitse rooli:
-<input type="radio" name="role" value="1" checked="checked"> Opiskelija
-<input type="radio" name="role" value="2"> Opettaja
-</p>
-<input type="submit" value="Luo käyttäjä">
-</form>
-<a href="/">Palaa takaisin</a>
+<head>
+    <div class="header">
+        <h2>Luo käyttäjä</h2>
+    </div>
+</head>
+
+<body>
+    <form action="/signup" method="POST">
+        <p>Käyttäjänimi:
+        <br>
+        <input type="text" name="username" minlength="1" maxlength="20"></p>
+        <p>Salasana:
+        <br>
+        <input type="password" name="password1" minlength="1" maxlength="20"></p>
+        <p>Kirjoita salasana uudestaan:
+        <br>
+        <input type="password" name="password2" minlength="1" maxlength="20"></p>
+        <p>Valitse rooli:
+        <input type="radio" name="role" value="1" checked="checked"> Opiskelija
+        <input type="radio" name="role" value="2"> Opettaja
+        </p>
+        <input type="submit" value="Luo käyttäjä">
+        </form>
+        <br>
+        <a href="/">Palaa takaisin</a>
+</body>
 
 {% endblock %}

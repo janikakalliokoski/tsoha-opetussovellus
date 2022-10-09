@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <div class="header">
+        <h2>Kurssi {{ name }}</h1>
+    </div>
+</head>
+
+<ul>
+    <li> Opettaja: {{ teacher }}</li>
+    <li> Kysymyksiä: {{ size }}</li>
+</ul>
+{% if session.user_id %}
+<head>
+    <div class="header">
+        <h2>Tehtävät:</h2>
+    </div>
+</head>
+
+<body>
+    <p>Valitse, mihin kysymykseen haluat vastata:</p>
+        <ul>
+            {% for question in questions %}
+            <li><a href = "/question/{{ question.id }}">{{ question.question }}</a></li>
+            {% endfor %}
+        </ul>
+    </form>
+</body>
+{% endif %}
+
+<a href="/">Palaa takaisin</a>
+
+{% endblock %}

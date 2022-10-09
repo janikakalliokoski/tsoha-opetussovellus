@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <div class="header">
+        <h2>Tulos</h2>
+    </div>
+</head>
+
+<body>
+    <p>Vastasit <b>{{ answer }}</b></p>
+    {% if answer == correct %}
+    <p>Oikein meni!</p>
+    {% else %}
+    <p>Väärin meni, yritä ensi kerralla uudestaan.</p>
+    {% endif %}
+    <br>
+
+    <a href="/course/{{ course_id }}">Palaa takaisin kurssisivulle</a>
+</body>
+
+{% endblock %}

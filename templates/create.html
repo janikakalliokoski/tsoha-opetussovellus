@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <div class="header">
+        <h2>Lisää uusi kurssi</h2>
+    </div>
+</head>
+
+<body>
+    <form action="/create" method="post">
+        <p>Kurssin nimi:
+        <br>
+        <input type="text" name="name" minlength="1" maxlength="25">
+        </p>
+
+        <p>Kysymys/vastaus:
+        <br>
+        <textarea name="words" rows="8" cols="40" maxlength="10000">
+        1+1;2
+        2+3;5
+        15*3;45
+        </textarea>
+        </p>
+
+        <input type="submit" value="Luo tehtäväsetti">
+    </form>
+    <br>
+    <a href="/">Palaa takaisin</a>
+</body>
+
+{% endblock %}

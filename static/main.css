@@ -1,0 +1,23 @@
+body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Arial Narrow', sans-serif;
+    background-color: #fab2e3;
+    color: #6e6070;
+}
+
+table {
+    width: 100%
+}
+
+td, th {
+    border-style: solid;
+    border-color: #61044b;
+    border-width: 1px;
+}
+
+.header {
+    text-align: left;
+    color: #61044b;
+    font-size: 20px;
+}

@@ -1,20 +1,40 @@
+{% extends "layout.html" %}
 {% block content %}
 
-<h1>Tämä on etusivu</h1>
+<head>
+    <div class="header">
+        <h1>Tämä on etusivu</h1>
+    </div>
+</head>
 
-<p>
-{% if message %}
-{{message}}
-{% endif %}
-</p>
+<body>
+    <p>
+        {% if message %}
+        {{message}}
+        {% endif %}
+    </p>
+    {% if session.user_id %}
+    <p>Olet kirjautunut käyttäjänimellä {{ session.user_username }}</p>
+    <a href="/logout">Kirjaudu ulos</a>
+    <p>Valitse kurssi, jonka tehtäviä haluat tehdä:</p>
+    <ul>
+        {% for course in courses %}
+        <li><a href = "/course/{{ course.id }}">{{ course.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% if session.user_role == "2" %}
+    <h3>Opettajan toiminnot:</h3>
+    <ul>
+        <li> <a href="/create">Luo uusi kurssi</a>
+    </ul>
+    {% endif %}
 
-{% if session.username %}
-<p>Olet kirjautunut käyttäjänimellä {{ session.username }}</p>
-<a href="/logout">Kirjaudu ulos</a>
-{% else %}
-<p>Et ole kirjautunut sisään.</p>
-<a href="/login">Kirjaudu sisään</a>
-<a href="/signup">Luo käyttäjä</a>
-{% endif %}
+    {% else %}
+    <p>Et ole kirjautunut sisään.</p>
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/signup">Luo käyttäjä</a>
+    {% endif %}
+
+</body>
 
 {% endblock %}
