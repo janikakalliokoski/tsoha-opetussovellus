@@ -1,6 +1,5 @@
 # opetussovellus
 
-  HUOM!! sovellus ei nyt toimi herokussa sillä tietokoneeni ei suostu päivittämään herokuun ajantasaista tietokantaa! 
 Sovelluksen ideana on se, että tietyn kurssin opiskelijat voivat lukea tehtäviin liittyvää materiaalia ja ratkoa kurssitehtäviä. Kurssin opettaja voi luoda uuden kurssin, jossa on materiaali ja tehtävät. Jokainen käyttäjä on joko opettaja tai opiskelija. 
 
 Sovelluksen ominaisuudet:
