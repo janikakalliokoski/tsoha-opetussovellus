@@ -15,6 +15,7 @@ create table courses (
 create table questions (
     id serial primary key,
     course_id integer references courses,
+    title text,
     question text,
     answer text
 );

@@ -22,7 +22,7 @@
     <p>Valitse, mihin kysymykseen haluat vastata:</p>
         <ul>
             {% for question in questions %}
-            <li><a href = "/question/{{ question.id }}">{{ question.question }}</a></li>
+            <li><a href = "/question/{{ question.id }}">{{ question.title }}</a></li>
             {% endfor %}
         </ul>
     </form>

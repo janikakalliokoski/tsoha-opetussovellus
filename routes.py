@@ -68,6 +68,7 @@ def create_course():
             return render_template("error.html", message="Kurssin nimen tulee sisältää muita kuin pelkkiä välilyöntejä")
         if "" == name:
             return render_template("error.html", message="Kurssin nimi ei voi olla tyhjä")
+
         questions = request.form["words"]
         if len(questions) > 10000:
             return render_template("error.html", message="Kysymys/vastauspareja on liikaa")
@@ -90,7 +91,7 @@ def show_course(course_id):
 def show_question(question_id):
     info = courses.get_question_info(question_id)
 
-    return render_template("question.html", question=info[1], question_id=question_id, course_id=info[0])
+    return render_template("question.html", question=info[2], question_id=question_id, course_id=info[0])
 
 @app.route("/result", methods=["POST"])
 def result():

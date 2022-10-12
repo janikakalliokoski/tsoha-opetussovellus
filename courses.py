@@ -1,6 +1,4 @@
-from secrets import choice
 from db import db
-from random import choice
 
 def add_course(name, questions, teacher_id):
     sql = "insert into courses (name, teacher_id, visible) values (:name, :teacher_id, 1) returning id"
@@ -8,11 +6,11 @@ def add_course(name, questions, teacher_id):
 
     for i in questions.split("\n"):
         parts = i.strip().split(";")
-        if len(parts) != 2:
+        if len(parts) != 3:
             continue
 
-        sql = "insert into questions (course_id, question, answer) values (:course_id, :question, :answer)"
-        db.session.execute(sql, {"course_id":course_id, "question":parts[0], "answer":parts[1]})
+        sql = "insert into questions (course_id, title, question, answer) values (:course_id, :title, :question, :answer)"
+        db.session.execute(sql, {"course_id":course_id, "title":parts[0], "question":parts[1], "answer":parts[2]})
 
     db.session.commit()
     return course_id
@@ -27,7 +25,7 @@ def get_course_info(course_id):
     return db.session.execute(sql, {"course_id": course_id}).fetchone()
 
 def get_question(course_id):
-    sql = "select id, question from questions where course_id=:course_id order by id"
+    sql = "select id, title, question from questions where course_id=:course_id order by id"
     result = list(db.session.execute(sql, {"course_id": course_id}).fetchall())
     questions = []
     for i in result:
@@ -35,7 +33,7 @@ def get_question(course_id):
     return questions
 
 def get_question_info(question_id):
-    sql = "select course_id, question from questions where id=:question_id"
+    sql = "select course_id, title, question from questions where id=:question_id"
     return db.session.execute(sql, {"question_id": question_id}).fetchone()
 
 def get_questions(question_id):
