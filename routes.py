@@ -69,23 +69,33 @@ def create_course():
         if "" == name:
             return render_template("error.html", message="Kurssin nimi ei voi olla tyhjä")
 
+        material = request.form["material"]
+        if len(material) < 1 or len(material) > 500:
+            return render_template("error.html", message="Linkin tulee olla 1-500 merkkiä pitkä")
+        if " "*len(material) == material:
+            return render_template("error.html", message="Linkin tulee sisältää muita kuin pelkkiä välilyöntejä")
+        if "" == material:
+            return render_template("error.html", message="Linkki ei voi olla tyhjä")
+
         questions = request.form["words"]
         if len(questions) > 10000:
             return render_template("error.html", message="Kysymys/vastauspareja on liikaa")
 
         course_id = courses.add_course(name, questions, users.user_id())
+        courses.add_material(course_id, material)
         return redirect("/course/"+str(course_id))
 
 @app.route("/course/<int:course_id>")
 def show_course(course_id):
     info = courses.get_course_info(course_id)
+    material = courses.get_course_material(course_id)
 
     questions = []
 
     for question in courses.get_question(course_id):
         questions.append(question)
 
-    return render_template("course.html", course_id=course_id, name=info[0], teacher=info[1], size=len(questions), questions=questions)
+    return render_template("course.html", course_id=course_id, name=info[0], teacher=info[1], material=material, size=len(questions), questions=questions)
 
 @app.route("/question/<int:question_id>")
 def show_question(question_id):

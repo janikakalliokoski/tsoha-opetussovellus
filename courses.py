@@ -15,6 +15,26 @@ def add_course(name, questions, teacher_id):
     db.session.commit()
     return course_id
 
+def add_material(course_id, material):
+    sql = "insert into materials (course_id, material) values (:course_id, :material)"
+    db.session.execute(sql, {"course_id":course_id, "material":material})
+    db.session.commit()
+
+def get_course_material(course_id):
+    sql = "select material from materials where course_id=:course_id"
+    result = str(db.session.execute(sql, {"course_id":course_id}).fetchone())
+    material = []
+    for i in result:
+        material.append(i)
+    print(material)
+    material.pop(0)
+    material.pop(0)
+    material.pop(-1)
+    material.pop(-1)
+    material.pop(-1)
+    real = "".join(material)
+    return real
+
 def get_all_courses():
     sql = "select id, name from courses where visible=1 order by name"
     return db.session.execute(sql).fetchall()

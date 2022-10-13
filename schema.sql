@@ -27,3 +27,9 @@ create table answers (
     sent timestamp,
     result integer
 );
+
+create table materials (
+    id serial primary key,
+    course_id integer references courses,
+    material text
+);
