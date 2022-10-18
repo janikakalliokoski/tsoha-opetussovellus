@@ -8,7 +8,12 @@
 </head>
 
 <body>
-    <form action="/signup" method="POST">
+    <p>
+        {% if message %}
+        {{message}}
+        {% endif %}
+    </p>
+    <form action="/signup" method="POST" onsubmit="return check(this)">
         <p>Käyttäjänimi:
         <br>
         <input type="text" name="username" minlength="1" maxlength="20"></p>
@@ -22,6 +27,31 @@
         <input type="radio" name="role" value="1" checked="checked"> Opiskelija
         <input type="radio" name="role" value="2"> Opettaja
         </p>
+        <script>
+            function check(form) {
+                if (form.username.value.length < 1 || form.username.value.length > 20) {
+                    alert("Käyttäjänimen on oltava 1-20 merkkiä");
+                    return false;
+                }
+                if (form.username.value.trim().length === 0) {
+                    alert("Käyttäjänimi ei voi olla tyhjä tai sisältää pelkkiä välilyöntejä");
+                    return false;
+                }
+                if (form.password1.value.length < 8 || form.password1.value.length > 20) {
+                    alert("Salasanan on oltava 8-20 merkkiä");
+                    return false;
+                }
+                if (form.password1.value.trim().length === 0) {
+                    alert("Salasana ei voi sisältää välilyöntejä");
+                    return false;
+                }
+                if (form.password1.value != form.password2.value) {
+                    alert("Salasanat eivät täsmää")
+                    return false;
+                }
+                return true;
+            }
+        </script>
         <input type="submit" value="Luo käyttäjä">
         </form>
         <br>

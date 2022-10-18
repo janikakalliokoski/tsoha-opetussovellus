@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    <p>
+        {% if message %}
+        {{message}}
+        {% endif %}
+    </p>
     <form action="/login" method="POST">
         <p>Käyttäjänimi:
         <br>

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <div class="header">
+        <h2>Poista kurssi {{ name }}</h1>
+    </div>
+</head>
+
+<body>
+    <form action="/delete" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <p>Minkä kurssin haluat poistaa?</p>
+        <ul>
+            {% for own_course in own_courses %}
+            <input type = "radio" name = "own_course" value = "{{ own_course.id}}"> {{ own_course.name }}
+            <br>
+            {% endfor %}
+        </ul>
+        <input type="submit" value ="Poista kurssi">
+    </form>
+    <br>
+    <a href="/">Palaa takaisin etusivulle</a>
+</body>
+
+{% endblock %}

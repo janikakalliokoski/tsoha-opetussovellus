@@ -14,7 +14,8 @@
 </div>
 
 <body>
-    <form action="/create" method="post">
+    <form action="/create" method="POST" onsubmit="return check(this)">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <p>Kurssin nimi:
             <br>
             <input type="text" name="name" minlength="1" maxlength="25">
@@ -25,11 +26,36 @@
         <p>Otsikko;kysymys;vastaus:
             <br>
             <textarea name="words" rows="8" cols="40" maxlength="10000">
-                pluslasku;1+1;2
-                pluslasku;2+3;5
-                pluslasku;15*3;45
+                pluslasku1;1+1;2
+                pluslasku2;2+3;5
+                pluslasku3;15*3;45
             </textarea>
         </p>
+        <script>
+            function check(form) {
+                if (form.name.value.length < 1 || form.name.value.length > 25) {
+                    alert("Kurssin nimen on oltava 1-25 merkkiä");
+                    return false;
+                }
+                if (form.name.value.trim().length === 0) {
+                    alert("Kurssin nimi ei voi olla tyhjä tai sisältää pelkkiä välilyöntejä");
+                    return false;
+                }
+                if (form.material.value.length < 1 || form.material.value.length > 500) {
+                    alert("Linkin tulee olla 1-500 merkkiä pitkä");
+                    return false;
+                }
+                if (form.material.value.trim().length === 0) {
+                    alert("Linkki ei voi olla tyhjä tai sisältää pelkkiä välilyöntejä");
+                    return false;
+                }
+                if (form.words.value.length > 10000) {
+                    alert("Kysymys/vastauspareja on liikaa");
+                    return false;
+                }
+                return true;
+            }
+        </script>
 
         <input type="submit" value="Luo tehtäväsetti">
     </form>

@@ -15,9 +15,20 @@ def add_course(name, questions, teacher_id):
     db.session.commit()
     return course_id
 
+
 def add_material(course_id, material):
     sql = "insert into materials (course_id, material) values (:course_id, :material)"
     db.session.execute(sql, {"course_id":course_id, "material":material})
+    db.session.commit()
+
+def delete_course(course_id, user_id):
+    sql = "update courses set visible=0 where id=:id and teacher_id=:user_id"
+    db.session.execute(sql, {"id":course_id, "user_id":user_id})
+    db.session.commit()
+
+def delete_course_material(course_id):
+    sql = "delete from materials where course_id=:course_id"
+    db.session.execute(sql, {"course_id":course_id})
     db.session.commit()
 
 def get_course_material(course_id):
@@ -26,7 +37,6 @@ def get_course_material(course_id):
     material = []
     for i in result:
         material.append(i)
-    print(material)
     material.pop(0)
     material.pop(0)
     material.pop(-1)
@@ -40,9 +50,16 @@ def get_all_courses():
     return db.session.execute(sql).fetchall()
 
 def get_course_info(course_id):
-    sql = """select c.name, u.username from courses c, users u
-             where c.id=:course_id and c.teacher_id=u.id"""
+    sql = "select c.name, u.username from courses c, users u where c.id=:course_id and c.teacher_id=u.id"
     return db.session.execute(sql, {"course_id": course_id}).fetchone()
+
+def get_own_courses(user_id):
+    sql = "select id, name from courses where teacher_id=:user_id and visible = 1 order by id"
+    result = list(db.session.execute(sql, {"user_id":user_id}).fetchall())
+    courses = []
+    for course in result:
+        courses.append(course)
+    return courses
 
 def get_question(course_id):
     sql = "select id, title, question from questions where course_id=:course_id order by id"

@@ -3,7 +3,7 @@
 
 <head>
     <div class="header">
-        <h1>Tämä on etusivu</h1>
+        <h1>Etusivu</h1>
     </div>
 </head>
 
@@ -25,7 +25,8 @@
     {% if session.user_role == "2" %}
     <h3>Opettajan toiminnot:</h3>
     <ul>
-        <li> <a href="/create">Luo uusi kurssi</a>
+        <li> <a href="/create">Luo uusi kurssi</a> </li>
+        <li> <a href="/delete">Katsele kurssejasi</a></li>
     </ul>
     {% endif %}
 
