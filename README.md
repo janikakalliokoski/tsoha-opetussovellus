@@ -6,7 +6,7 @@ Sovelluksen ominaisuudet:
 - Käyttäjä voi kirjautua sisään ja ulos.
 - Käyttäjä voi luoda uuden tunnuksen ja valita roolin (opettaja/opiskelija).
 - Opettaja näkee luomansa kurssit, voi luoda uuden kurssin ja poistaa kurssin.
-- Opiskelija näkee sovelluksessa olevat kurssit ja ratkoa kunkin kurssin tehtäviä kurssin alueella.
+- Opiskelija näkee sovelluksessa olevat kurssit ja voi ratkoa kunkin kurssin tehtäviä kurssin alueella.
 - Kurssialueella on näkyvissä tehtäviin liittyvä materiaali.
 - Tehtävät ovat aukkotehtäviä, johon opiskelija täyttää vastauksen.
 - Tehtävän suorituksen jälkeen opiskelija näkee oliko vastaus oikein vai väärin.
