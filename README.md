@@ -17,7 +17,3 @@ Testaa sovellusta [Herokussa](https://tsoha-janikan-opetussovellus.herokuapp.com
 
 ***Sovelluksen TODO-lista***
 - *Opiskelijan näkemä tilasto*
-- *Opettajan näkemä tilasto*
-- *Materiaaleille tietokantataulu ja linkki materiaaliin kurssisivulla*
-- *Kurssien poistaminen*
-- *Lisää csrf-tokenit*
