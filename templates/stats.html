@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <div class="header">
+        <h2>Kurssien tilastot</h1>
+    </div>
+</head>
+
+<body>
+    {% for i in data %}
+    <h3>Kurssi {{ i[0] }}</h3>
+    <h4>Kaiken kaikkiaan vastauksia on yhteensä {{ i[1] }} kpl joista {{ i[2] }} kpl on oikein</h4>
+    <table>
+        <tr>
+            <th>opiskelija</th>
+            <th>vastatut kysymykset</th>
+            <th>oikein(1)/väärin(0)</th>
+        </tr>
+        {% for user in i[3] %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+    <br>
+    <a href="/">Palaa takaisin etusivulle</a>
+</body>
+
+{% endblock %}

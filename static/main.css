@@ -21,3 +21,10 @@ td, th {
     color: #61044b;
     font-size: 20px;
 }
+
+.success {
+    color: #4F8A10;
+}
+.ermsg {
+    color: #ba3939;
+}

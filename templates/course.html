@@ -20,6 +20,12 @@
 </head>
 
 <body>
+    <h3>Omat tilastot:</h3>
+    <ul>
+        {% for question in questions %}
+        <li>{{ question.title }}</li>
+        {% endfor %}
+    </ul>
     <p>Valitse, mihin kysymykseen haluat vastata:</p>
         <ul>
             {% for question in questions %}

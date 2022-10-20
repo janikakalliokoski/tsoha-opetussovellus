@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect
 import users
 import courses
+import stats
 
 @app.route("/")
 def index():
@@ -105,6 +106,13 @@ def delete():
             courses.delete_course_material(own_course)
 
         return redirect("/")
+
+@app.route("/stats")
+def show_statistics():
+    users.require_role("2")
+
+    data = stats.get_course_stats(users.user_id())
+    return render_template("stats.html", data=data)
 
 @app.route("/course/<int:course_id>")
 def show_course(course_id):

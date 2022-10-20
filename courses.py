@@ -15,7 +15,6 @@ def add_course(name, questions, teacher_id):
     db.session.commit()
     return course_id
 
-
 def add_material(course_id, material):
     sql = "insert into materials (course_id, material) values (:course_id, :material)"
     db.session.execute(sql, {"course_id":course_id, "material":material})
@@ -81,8 +80,22 @@ def submit_answer(question_id, answer, user_id):
     sql = "select answer from questions where id=:id"
     correct = db.session.execute(sql, {"id":question_id}).fetchone()[0]
 
-    result = 1 if answer == correct else 2
+    sql = "select result from answers where user_id=:user_id and question_id=:question_id"
+    found = str(db.session.execute(sql, {"user_id":user_id, "question_id":question_id}).fetchone())
 
-    sql = "insert into answers (user_id, question_id, sent, result) values (:user_id, :question_id, now(), :result)"
-    db.session.execute(sql, {"user_id":user_id, "question_id":question_id, "result":result})
-    db.session.commit()
+    sql = "select exists(select result from answers where user_id=:user_id and question_id=:question_id)"
+    is_found = str(db.session.execute(sql, {"user_id":user_id, "question_id":question_id}).fetchone())
+
+    if is_found == "(True,)":
+        if found == "(0,)":
+            if answer == correct:
+                sql = "update answers set result=1 where user_id=:user_id and question_id=:question_id"
+                db.session.execute(sql, {"user_id":user_id, "question_id":question_id})
+                db.session.commit()
+        elif found == "(1,)":
+            pass
+    else:
+        result = 1 if answer == correct else 0
+        sql = "insert into answers (user_id, question_id, sent, result) values (:user_id, :question_id, now(), :result)"
+        db.session.execute(sql, {"user_id":user_id, "question_id":question_id, "result":result})
+        db.session.commit()

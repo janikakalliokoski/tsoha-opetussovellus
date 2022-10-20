@@ -8,11 +8,11 @@
 </head>
 
 <body>
-    <p>
-        {% if message %}
+    {% if message %}
+    <div class="success">
         {{message}}
-        {% endif %}
-    </p>
+    </div>
+    {% endif %}
     {% if session.user_id %}
     <p>Olet kirjautunut käyttäjänimellä {{ session.user_username }}</p>
     <a href="/logout">Kirjaudu ulos</a>
@@ -26,7 +26,8 @@
     <h3>Opettajan toiminnot:</h3>
     <ul>
         <li> <a href="/create">Luo uusi kurssi</a> </li>
-        <li> <a href="/delete">Katsele kurssejasi</a></li>
+        <li> <a href="/delete">Poista kurssi</a></li>
+        <li> <a href="/stats">Katso tilastot</a></li>
     </ul>
     {% endif %}
 

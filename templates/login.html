@@ -8,11 +8,11 @@
 </head>
 
 <body>
-    <p>
-        {% if message %}
+    {% if message %}
+    <div class="ermsg">
         {{message}}
-        {% endif %}
-    </p>
+    </div>
+    {% endif %}
     <form action="/login" method="POST">
         <p>Käyttäjänimi:
         <br>
