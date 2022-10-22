@@ -2,7 +2,7 @@
 {% block content %}
 
 <body>
-    <form action="/result" method="post">
+    <form action="/result" method="POST" onsubmit="return check(this)">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <p>Kysymys: <b>{{ question }}</b></p>
 

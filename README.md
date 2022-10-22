@@ -1,6 +1,6 @@
 # opetussovellus
 
-Sovelluksen ideana on se, että tietyn kurssin opiskelijat voivat lukea tehtäviin liittyvää materiaalia ja ratkoa kurssitehtäviä. Kurssin opettaja voi luoda uuden kurssin, jossa on materiaali ja tehtävät. Jokainen käyttäjä on joko opettaja tai opiskelija. 
+Sovelluksen ideana on se, että tietyn kurssin opiskelijat voivat lukea tehtäviin liittyvää materiaalia ja ratkoa kurssitehtäviä. Kurssin opettaja voi luoda uuden kurssin, jossa on materiaali ja tehtävät. Jokainen käyttäjä on joko opettaja tai opiskelija.
 
 Sovelluksen ominaisuudet:
 - Käyttäjä voi kirjautua sisään ja ulos.
@@ -14,6 +14,3 @@ Sovelluksen ominaisuudet:
 - Opettaja näkee omista kursseistaan tilastot, joissa näkyy ketkä opiskelijat ovat suorittaneet kurssin tehtäviä ja mitkä tehtävät kukin opiskelija on ratkaissut oikein.
 
 Testaa sovellusta [Herokussa](https://tsoha-janikan-opetussovellus.herokuapp.com/)
-
-***Sovelluksen TODO-lista***
-- *Opiskelijan näkemä tilasto*

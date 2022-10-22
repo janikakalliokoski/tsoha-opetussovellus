@@ -36,3 +36,9 @@ def get_course_stats(user_id):
         data.append((course[1], int(total), int(correct), results))
 
     return data
+
+def get_own_stats(course_id, user_id):
+    sql = """select q.title, a.result from answers a, questions q
+         where q.course_id=:course_id and a.user_id=:user_id and a.question_id=q.id"""
+
+    return db.session.execute(sql, {"course_id":course_id, "user_id":user_id}).fetchall()

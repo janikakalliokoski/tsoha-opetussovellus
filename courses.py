@@ -1,7 +1,8 @@
 from db import db
 
 def add_course(name, questions, teacher_id):
-    sql = "insert into courses (name, teacher_id, visible) values (:name, :teacher_id, 1) returning id"
+    sql = """insert into courses (name, teacher_id, visible)
+             values (:name, :teacher_id, 1) returning id"""
     course_id = db.session.execute(sql, {"name":name, "teacher_id":teacher_id}).fetchone()[0]
 
     for i in questions.split("\n"):
@@ -9,8 +10,10 @@ def add_course(name, questions, teacher_id):
         if len(parts) != 3:
             continue
 
-        sql = "insert into questions (course_id, title, question, answer) values (:course_id, :title, :question, :answer)"
-        db.session.execute(sql, {"course_id":course_id, "title":parts[0], "question":parts[1], "answer":parts[2]})
+        sql = """insert into questions (course_id, title, question, answer)
+                 values (:course_id, :title, :question, :answer)"""
+        db.session.execute(sql, {"course_id":course_id, "title":parts[0],
+                                 "question":parts[1], "answer":parts[2]})
 
     db.session.commit()
     return course_id
@@ -49,11 +52,13 @@ def get_all_courses():
     return db.session.execute(sql).fetchall()
 
 def get_course_info(course_id):
-    sql = "select c.name, u.username from courses c, users u where c.id=:course_id and c.teacher_id=u.id"
+    sql = """select c.name, u.username from courses c, users u
+             where c.id=:course_id and c.teacher_id=u.id"""
     return db.session.execute(sql, {"course_id": course_id}).fetchone()
 
 def get_own_courses(user_id):
-    sql = "select id, name from courses where teacher_id=:user_id and visible = 1 order by id"
+    sql = """select id, name from courses
+             where teacher_id=:user_id and visible = 1 order by id"""
     result = list(db.session.execute(sql, {"user_id":user_id}).fetchall())
     courses = []
     for course in result:
@@ -61,7 +66,8 @@ def get_own_courses(user_id):
     return courses
 
 def get_question(course_id):
-    sql = "select id, title, question from questions where course_id=:course_id order by id"
+    sql = """select id, title, question from questions
+             where course_id=:course_id order by id"""
     result = list(db.session.execute(sql, {"course_id": course_id}).fetchall())
     questions = []
     for i in result:
@@ -80,22 +86,27 @@ def submit_answer(question_id, answer, user_id):
     sql = "select answer from questions where id=:id"
     correct = db.session.execute(sql, {"id":question_id}).fetchone()[0]
 
-    sql = "select result from answers where user_id=:user_id and question_id=:question_id"
+    sql = """select result from answers
+             where user_id=:user_id and question_id=:question_id"""
     found = str(db.session.execute(sql, {"user_id":user_id, "question_id":question_id}).fetchone())
 
-    sql = "select exists(select result from answers where user_id=:user_id and question_id=:question_id)"
-    is_found = str(db.session.execute(sql, {"user_id":user_id, "question_id":question_id}).fetchone())
+    sql = """select exists(select result from answers
+             where user_id=:user_id and question_id=:question_id)"""
+    is_found = str(db.session.execute(sql,
+                                      {"user_id":user_id, "question_id":question_id}).fetchone())
 
     if is_found == "(True,)":
         if found == "(0,)":
             if answer == correct:
-                sql = "update answers set result=1 where user_id=:user_id and question_id=:question_id"
+                sql = """update answers set result=1
+                         where user_id=:user_id and question_id=:question_id"""
                 db.session.execute(sql, {"user_id":user_id, "question_id":question_id})
                 db.session.commit()
         elif found == "(1,)":
             pass
     else:
         result = 1 if answer == correct else 0
-        sql = "insert into answers (user_id, question_id, sent, result) values (:user_id, :question_id, now(), :result)"
+        sql = """insert into answers (user_id, question_id, sent, result)
+                 values (:user_id, :question_id, now(), :result)"""
         db.session.execute(sql, {"user_id":user_id, "question_id":question_id, "result":result})
         db.session.commit()

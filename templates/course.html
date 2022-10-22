@@ -21,11 +21,18 @@
 
 <body>
     <h3>Omat tilastot:</h3>
-    <ul>
-        {% for question in questions %}
-        <li>{{ question.title }}</li>
+    <table>
+        <tr>
+            <th>vastatut kysymykset</th>
+            <th>oikein(1)/väärin(0)</th>
+        </tr>
+        {% for entry in data %}
+        <tr>
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
     <p>Valitse, mihin kysymykseen haluat vastata:</p>
         <ul>
             {% for question in questions %}
