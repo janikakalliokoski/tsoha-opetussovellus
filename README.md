@@ -13,4 +13,4 @@ Sovelluksen ominaisuudet:
 - Opiskelija näkee tilaston, mitkä kaikki tehtävät hän on ratkaissut oikein.
 - Opettaja näkee omista kursseistaan tilastot, joissa näkyy ketkä opiskelijat ovat suorittaneet kurssin tehtäviä ja mitkä tehtävät kukin opiskelija on ratkaissut oikein.
 
-Testaa sovellusta [Herokussa](https://tsoha-janikan-opetussovellus.herokuapp.com/)
+Testaa sovellusta [täällä](https://tsoha-opetussovellus.fly.dev/)
