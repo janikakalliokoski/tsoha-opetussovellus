@@ -14,3 +14,4 @@ Sovelluksen ominaisuudet:
 - Opettaja näkee omista kursseistaan tilastot, joissa näkyy ketkä opiskelijat ovat suorittaneet kurssin tehtäviä ja mitkä tehtävät kukin opiskelija on ratkaissut oikein.
 
 Testaa sovellusta [täällä](https://tsoha-opetussovellus.fly.dev/)
+Jos sovellus ei toimi, päivitä sivu.
